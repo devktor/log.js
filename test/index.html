@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Mocha Tests</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="vendor/mocha/mocha.css" />
+  </head>
+  <body>
+    <div id="mocha"></div>
+
+    <script src="vendor/chai/chai.js"></script>
+    <script src="vendor/mocha/mocha.js"></script>
+
+    <script class="mocha-init">
+      mocha.setup('bdd');
+      //mocha.checkLeaks();
+    </script>
+    <script type="text/javascript" src="src/LogDomain.js"></script>
+<!--    <script type="text/javascript" src="src/Logger.js"></script>-->
+<!--    <script type="text/javascript" src="src/LogManager.js"></script>-->
+
+    <script type="text/javascript" src="case/LogDomainTest.js"></script>
+<!--    <script type="text/javascript" src="case/LoggerTest.js"></script>-->
+<!--    <script type="text/javascript" src="case/LogManager.js"></script>-->
+
+
+    <script class="mocha-exec">
+      mocha.run();
+    </script>
+  </body>
+</html>
