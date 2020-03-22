@@ -1,6 +1,6 @@
 if (typeof module !== 'undefined' && module.exports) {
     assert = require("chai").assert;
-    LogDomain = require("../src/LogDomain");
+    LogDomain = require("../src/detail/LogDomain");
 }else{
     var assert = chai.assert;
 }
