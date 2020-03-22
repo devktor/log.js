@@ -36,11 +36,6 @@ function LogDomain(name, level, parent, ptr){
         if(!(parent instanceof LogDomain)){
             throw new Error("Invalid parent");
         }
-
-        if(parent.hasSubDomain(name)){
-            throw new Error("Parent has already this subdomain registered");
-        }
-
         parent.setSubdomain(name, this);
     }
 
@@ -93,24 +88,22 @@ function LogDomain(name, level, parent, ptr){
         return this.setSubDomainByUri(uri, level, ptr);
     };
 
-    this.setSubDomainByUri = function(uri, level, ptr){
+    this.replaceSubDomainByUri = function(uri, level, ptr){
 
         var nodes = uri.split(":");
         var name = nodes.pop();
         var parent = this;
 
         for(var i in nodes){
-
             if(parent.hasSubDomain(nodes[i])){
                 parent = parent.getSubDomain(nodes[i]);
             }else{
                 //creating if doesn't exists
-                parent = new Domain(name, level, parent);
+                parent = new LogDomain(nodes[i], level, parent);
             }
         }
 
-        var subdomain = new Domain(name, level, parent, ptr);
-        parent.setSubdomain(name, subdomain);
+        var subdomain = new LogDomain(name, level, parent, ptr);
         return subdomain;
     };
 
