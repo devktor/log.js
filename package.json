@@ -1,6 +1,6 @@
 {
-  "name": "js.domain-logger",
-  "displayName": "domain-logger.js",
+  "name": "js.logger",
+  "displayName": "logger.js",
   "version": "0.0.1",
   "description": "Multi domain logger with custom output destination (local/remote)",
   "main": "index.js",
