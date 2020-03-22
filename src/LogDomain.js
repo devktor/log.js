@@ -81,11 +81,11 @@ function LogDomain(name, level, parent, ptr){
     };
 
     this.addSubDomainByUri = function(uri, level, ptr){
-        var subdomain = this.findSubDomain(uri);
+        var subdomain = this.findSubDomainByUri(uri);
         if(subdomain){
             return false;
         }
-        return this.setSubDomainByUri(uri, level, ptr);
+        return this.replaceSubDomainByUri(uri, level, ptr);
     };
 
     this.replaceSubDomainByUri = function(uri, level, ptr){
