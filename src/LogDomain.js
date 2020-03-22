@@ -39,14 +39,7 @@ function LogDomain(name, level, parent, ptr){
         parent.setSubdomain(name, this);
     }
 
-    if(!level){
-        if(parent){
-            level = parent.getLevel();
-        }else{
-            level = Log_Level.DEBUG;
-        }
-    }else{
-
+    var parseLogLevel = function(level){
         if(typeof level == "string"){
             level = level.toUpperCase();
         }
@@ -56,6 +49,18 @@ function LogDomain(name, level, parent, ptr){
         }else if(!(level in Log_Level_Name)){
             throw new Error("Invalid log level : "+level);
         }
+        return level;
+    };
+
+    if(!level){
+        if(parent){
+            level = parent.getLevel();
+        }else{
+            level = Log_Level.DEBUG;
+        }
+    }else{
+
+        level = parseLogLevel(level);
     }
 
 
@@ -66,6 +71,8 @@ function LogDomain(name, level, parent, ptr){
         level: level,
         ptr: ptr||null
     };
+
+
 
 
     this.getName = function(){
@@ -137,18 +144,7 @@ function LogDomain(name, level, parent, ptr){
 
 
     this.setLevel = function(level){
-        if (!(level in Log_Level)){
-            return false;
-        }
-
-        var parent = domain.parent;
-        while(parent){
-            if(level < parent.level){
-                return false;
-            }
-            parent = parent.getParent();
-        }
-        domain.level = level;
+        domain.level = parseLogLevel(level);
         return true;
     };
 
