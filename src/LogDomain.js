@@ -51,6 +51,11 @@ function LogDomain(name, level, parent, ptr){
             level = Log_Level.DEBUG;
         }
     }else{
+
+        if(typeof level == "string"){
+            level = level.toUpperCase();
+        }
+
         if(level in Log_Level){
             level = Log_Level[level];
         }else if(!(level in Log_Level_Name)){
