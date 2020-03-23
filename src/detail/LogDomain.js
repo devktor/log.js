@@ -87,6 +87,21 @@ function LogDomain(name, level, parent, ptr){
         return domain.parent;
     };
 
+    this.addSubDomain = function(name, level, ptr){
+        if(this.hasSubDomain(name)){
+            return false;
+        }
+        return this.replaceSubDomain(name, level, ptr);
+    };
+
+    this.replaceSubDomain = function(name, level, ptr){
+        if(!ValidateDomainName(name)){
+            //not allowing multiple subdomains
+            return false;
+        }
+        return new LogDomain(name, level, this, ptr);
+    };
+
     this.addSubDomainByUri = function(uri, level, ptr){
         var subdomain = this.findSubDomainByUri(uri);
         if(subdomain){
