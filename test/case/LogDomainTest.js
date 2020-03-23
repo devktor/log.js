@@ -115,6 +115,59 @@ describe("LogDomain", function() {
             assert.equal(bar.getName(), "bar");
             assert.equal(bar.getLevel(), LogDomain.Log_Level.WARNING);
         });
+    });
+
+    describe("#addSubDomain()", function(){
+
+        it("invalid subdomain name", function(){
+            var parent = new LogDomain("parent");
+            assert.isFalse(parent.addSubDomain("test:1"));
+            assert.isFalse(parent.hasSubDomain("test"));
+            assert.isFalse(parent.hasSubDomain("test:1"));
+        });
+
+        it("new subdomain", function(){
+            var parent = new LogDomain("parent");
+            parent.addSubDomain("test");
+            assert(parent.hasSubDomain("test"));
+            assert.equal(parent.getSubDomain("test").getName(), "test");
+        });
+
+        it("existing subdomain", function(){
+            var parent = new LogDomain("parent");
+            parent.addSubDomain("test", "warning");
+            assert(parent.hasSubDomain("test"));
+            assert.equal(parent.getSubDomain("test").getLevel(), LogDomain.Log_Level.WARNING);
+            assert.isFalse(parent.addSubDomain("test", "debug"));
+            assert.equal(parent.getSubDomain("test").getLevel(), LogDomain.Log_Level.WARNING);
+        });
+
+    });
+
+    describe("#replaceSubDomain()", function(){
+
+        it("invalid subdomain name", function(){
+            var parent = new LogDomain("parent");
+            assert.isFalse(parent.replaceSubDomain("test:1"));
+            assert.isFalse(parent.hasSubDomain("test"));
+            assert.isFalse(parent.hasSubDomain("test:1"));
+        });
+
+        it("new subdomain", function(){
+            var parent = new LogDomain("parent");
+            parent.replaceSubDomain("test");
+            assert(parent.hasSubDomain("test"));
+            assert.equal(parent.getSubDomain("test").getName(), "test");
+        });
+
+        it("existing subdomain", function(){
+            var parent = new LogDomain("parent");
+            parent.replaceSubDomain("test", "warning");
+            assert(parent.hasSubDomain("test"));
+            assert.equal(parent.getSubDomain("test").getLevel(), LogDomain.Log_Level.WARNING);
+            parent.replaceSubDomain("test", "debug");
+            assert.equal(parent.getSubDomain("test").getLevel(), LogDomain.Log_Level.DEBUG);
+        });
     })
 
     describe("#addSubDomainByUri()", function(){
