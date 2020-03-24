@@ -70,6 +70,14 @@ function Logger(domain, context){
         return subdomain.getPtr();
     };
 
+    this.getParent = function(){
+        var parent = domain.getParent();
+        if(parent){
+            return parent.getPtr();
+        }
+        return undefined;
+    };
+
     var log = function(level, msg){
 
         if(level < domain.getLevel()){
