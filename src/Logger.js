@@ -51,7 +51,7 @@ function Logger(domain, context){
     };
 
     this.createChild = function(name, level){
-        var subdomain = domain.addSubDomain(name);
+        var subdomain = domain.addSubDomain(name, level);
         if(!subdomain){
             throw new Error("Invalid subdomain name or it already is registered");
         }
