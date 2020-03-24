@@ -33,7 +33,7 @@ function Logger(domain, context){
     if(!context){
         context = new LogContext();
     }else{
-        if(!context instanceof LogContext){
+        if(!(context instanceof LogContext)){
             throw new Error("Invalid log context");
         }
     }
