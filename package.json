@@ -1,13 +1,18 @@
 {
-  "name": "applog",
-  "displayName": "applog",
-  "version": "0.0.1",
+  "name": "@devktor/log.js",
+  "displayName": "log.js",
+  "version": "0.0.2",
   "description": "Multi domain logger with custom output destination (local/remote)",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha test/case"
   },
   "author": "Victor Bucataru",
+  "email": "ping@devktor.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/devktor/log.js.git"
+  },
   "license": "MIT",
   "dependencies": {
     "chai": "^4.2.0",
