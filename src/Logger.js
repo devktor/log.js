@@ -61,7 +61,7 @@ function Logger(domain, context){
     this.getChild = function(name){
         var subdomain = domain.getSubDomain(name);
         if(!subdomain){
-            return false;
+            return undefined;
         }
         return subdomain.getPtr();
     };
