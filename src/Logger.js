@@ -46,6 +46,10 @@ function Logger(domain, context){
         return domain.getLevel();
     };
 
+    this.mute = function(){
+        this.setLogLevel(LogDomain.Log_Level.NONE);
+    };
+
     this.getDomainName = function(){
         return domain.getName();
     };
