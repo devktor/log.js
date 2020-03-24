@@ -1,5 +1,5 @@
 if(typeof module != "undefined" && module.exports){
-    LogDomain = require("../LogDomain");
+    LogDomain = require("../detail/LogDomain");
     isNodeJs = true;
 }
 

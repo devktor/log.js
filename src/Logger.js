@@ -1,7 +1,7 @@
 if(typeof module != "undefined" && module.exports){
 
-    LogDomain = require("detail/LogDomain");
-    ConsoleWriter = require("writer/ConsoleWriter");
+    LogDomain = require("./detail/LogDomain");
+    ConsoleWriter = require("./writer/ConsoleWriter");
 }
 
 
@@ -111,15 +111,15 @@ function Logger(domain, context){
     };
 
     this.debug = function(msg){
-        log(Log_Level.DEBUG, msg);
+        log(LogDomain.Log_Level.DEBUG, msg);
     };
 
     this.error = function(msg){
-        log(Log_Level.ERROR, msg);
+        log(LogDomain.Log_Level.ERROR, msg);
     };
 
     this.warning = function(msg){
-        log(Log_Level.WARNING, msg);
+        log(LogDomain.Log_Level.WARNING, msg);
     };
 
 };

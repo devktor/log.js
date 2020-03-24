@@ -1,9 +1,9 @@
 {
-  "name": "js.managed-logger",
-  "displayName": "managed-logger.js",
+  "name": "applog",
+  "displayName": "applog",
   "version": "0.0.1",
   "description": "Multi domain logger with custom output destination (local/remote)",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "mocha test/case"
   },
