@@ -87,7 +87,7 @@ function Logger(domain, context){
                 domainTxt = parent.getName() + ":" + domainTxt;
             }
         }
-        context.writer.write(domain.getLevel(), domain.getName(), msg);
+        context.writer.write(level, domain.getName(), msg);
     };
 
     this.debug = function(msg){
