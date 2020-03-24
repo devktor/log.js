@@ -9,7 +9,8 @@ const Log_Level = {
 const Log_Level_Name = {
     0: "DEBUG",
     1: "WARNING",
-    2: "ERROR"
+    2: "ERROR",
+    3: "NONE"
 };
 
 
