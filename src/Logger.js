@@ -42,6 +42,10 @@ function Logger(domain, context){
         return domain.setLevel(level);
     };
 
+    this.getLogLevel = function(){
+        return domain.getLevel();
+    };
+
     this.createChild = function(name, level){
         var subdomain = domain.addSubDomain(name);
         if(!subdomain){
@@ -99,7 +103,8 @@ function Logger(domain, context){
 
 Logger.Context = LogContext;
 Logger.Domain = LogDomain;
-
+Logger.Log_Level = LogDomain.Log_Level;
+Logger.Log_Level_Name = LogDomain.Log_Level_Name;
 
 if(typeof module != "undefined" && module.exports){
 
