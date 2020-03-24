@@ -46,6 +46,10 @@ function Logger(domain, context){
         return domain.getLevel();
     };
 
+    this.getDomainName = function(){
+        return domain.getName();
+    };
+
     this.createChild = function(name, level){
         var subdomain = domain.addSubDomain(name);
         if(!subdomain){
