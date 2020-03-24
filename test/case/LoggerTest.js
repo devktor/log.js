@@ -1,24 +1,9 @@
 if(typeof module != "undefined" && module.exports){
     Logger = require("../src/Logger");
     assert = require("chai").assert;
+    TestWriter = require("./detail/TestWriter");
 }else{
     assert = chai.assert;
-}
-
-
-function TestWriter(){
-    this.lastMessage = "";
-    this.lastLevel = null;
-    this.lastDomain = "";
-    this.wrote = 0;
-
-    this.write = function(level, domain, message){
-        this.wrote++;
-        this.lastLevel = level;
-        this.lastDomain = domain;
-        this.lastMessage = message;
-    };
-    return this;
 }
 
 
