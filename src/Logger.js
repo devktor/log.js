@@ -8,6 +8,14 @@ if(typeof module != "undefined" && module.exports){
 
 function LogContext(writer){
     this.writer = writer || new ConsoleWriter;
+
+    this.setWriter = function(writer){
+        if(!writer || !writer.write){
+            throw new Error("Invalid writer");
+        }
+        this.writer = writer;
+    };
+
     return this;
 }
 
