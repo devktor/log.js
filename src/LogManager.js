@@ -4,10 +4,10 @@ if(typeof module != "undefined" && module.exports){
 
 
 
-function LogManager(){
+function LogManager(domain){
 
     var context = new Logger.Context();
-    var domain = new Logger.Domain();
+    var domain = new Logger.Domain(domain);
     var defaultLevel = null;
 
     this.setWriter = function(writer){
