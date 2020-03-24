@@ -32,6 +32,10 @@ function Logger(domain, context){
 
     if(!context){
         context = new LogContext();
+    }else{
+        if(!context instanceof LogContext){
+            throw new Error("Invalid log context");
+        }
     }
 
     this.setLogLevel = function(level){
@@ -75,7 +79,7 @@ function Logger(domain, context){
                 domainTxt = parent.getName() + ":" + domainTxt;
             }
         }
-        context.writer.write(domain.getLevel(), (domainTxt?("("+domainTxt+") "):" ")+ JSON.stringify(msg));
+        context.writer.write(domain.getLevel(), domain.getName(), JSON.stringify(msg));
     };
 
     this.debug = function(msg){
