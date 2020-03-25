@@ -1,16 +1,18 @@
 const Log_Level = {
     DEBUG: 0,
-    WARNING: 1,
-    ERROR: 2,
-    NONE: 3,
+    EVENT: 1,
+    WARNING: 2,
+    ERROR: 3,
+    NONE: 4,
 };
 
 
 const Log_Level_Name = {
     0: "DEBUG",
-    1: "WARNING",
-    2: "ERROR",
-    3: "NONE"
+    1: "EVENT",
+    2: "WARNING",
+    3: "ERROR",
+    4: "NONE"
 };
 
 

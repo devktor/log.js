@@ -20,7 +20,7 @@ describe("Logger", function(){
             var logger = new Logger("test", new Logger.Context(writer));
             logger.debug("test message");
             assert.equal(writer.wrote, 1);
-            assert.equal(writer.lastLevel, Logger.Domain.Log_Level.DEBUG);
+            assert.equal(writer.lastEvent, "DEBUG");
             assert.equal(writer.lastDomain, "test");
             assert.equal(writer.lastMessage, "test message");
         });
@@ -113,7 +113,7 @@ describe("Logger", function(){
             var logger = new Logger("",new Logger.Context(writer));
             logger.debug("test message");
             assert.equal(writer.wrote, 1);
-            assert.equal(writer.lastLevel, Logger.Log_Level.DEBUG);
+            assert.equal(writer.lastEvent, "DEBUG");
             assert.equal(writer.lastMessage, "test message");
         });
         it("lower log level", function(){
@@ -140,7 +140,7 @@ describe("Logger", function(){
             var logger = new Logger("",new Logger.Context(writer));
             logger.error("test message");
             assert.equal(writer.wrote, 1);
-            assert.equal(writer.lastLevel, Logger.Log_Level.ERROR);
+            assert.equal(writer.lastEvent, "ERROR");
             assert.equal(writer.lastMessage, "test message");
         });
         it("lower log level", function(){
@@ -166,7 +166,7 @@ describe("Logger", function(){
             var logger = new Logger("",new Logger.Context(writer));
             logger.warning("test message");
             assert.equal(writer.wrote, 1);
-            assert.equal(writer.lastLevel, Logger.Log_Level.WARNING);
+            assert.equal(writer.lastEvent, "WARNING");
             assert.equal(writer.lastMessage, "test message");
         });
         it("lower log level", function(){
@@ -187,5 +187,31 @@ describe("Logger", function(){
 
     });
 
+    describe("#event()", function(){
+        it("warning log level or higher", function(){
+            var writer = new TestWriter();
+            var logger = new Logger("",new Logger.Context(writer));
+            logger.event("test", "test message");
+            assert.equal(writer.wrote, 1);
+            assert.equal(writer.lastEvent, "test");
+            assert.equal(writer.lastMessage, "test message");
+        });
+        it("lower log level", function(){
+            var writer = new TestWriter();
+            var logger = new Logger("",new Logger.Context(writer));
+            logger.setLogLevel(Logger.Log_Level.ERROR);
+            logger.event("test","test message");
+            assert.equal(writer.wrote, 0);
+        });
+        it("parent with lower log level", function(){
+            var writer = new TestWriter();
+            var logger = new Logger("",new Logger.Context(writer));
+            logger.setLogLevel(Logger.Log_Level.ERROR);
+            var child = logger.createChild("test", "warning");
+            child.event("test", "test message");
+            assert.equal(writer.wrote, 0);
+        });
+
+    });
 
 });

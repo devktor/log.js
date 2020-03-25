@@ -1,12 +1,12 @@
 function TestWriter(){
     this.lastMessage = "";
-    this.lastLevel = null;
+    this.lastEvent = "";
     this.lastDomain = "";
     this.wrote = 0;
 
-    this.write = function(level, domain, message){
+    this.write = function(domain, event, message){
         this.wrote++;
-        this.lastLevel = level;
+        this.lastEvent = event;
         this.lastDomain = domain;
         this.lastMessage = message;
     };

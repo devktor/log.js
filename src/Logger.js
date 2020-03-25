@@ -86,7 +86,7 @@ function Logger(domain, context){
         return undefined;
     };
 
-    var log = function(level, msg){
+    var log = function(level, event, msg){
 
         if(level < domain.getLevel()){
             return false;
@@ -99,7 +99,7 @@ function Logger(domain, context){
             }
         }
 
-        var domainTxt = "";
+        var domainTxt = domain.getName();
         parent = domain.getParent();
         if(parent){
             domainTxt = parent.getName();
@@ -107,21 +107,24 @@ function Logger(domain, context){
                 domainTxt = parent.getName() + ":" + domainTxt;
             }
         }
-        context.writer.write(level, domain.getName(), msg);
+        context.writer.write(domainTxt, event, msg);
     };
 
     this.debug = function(msg){
-        log(LogDomain.Log_Level.DEBUG, msg);
+        log(LogDomain.Log_Level.DEBUG, "DEBUG", msg);
     };
 
     this.error = function(msg){
-        log(LogDomain.Log_Level.ERROR, msg);
+        log(LogDomain.Log_Level.ERROR, "ERROR", msg);
     };
 
     this.warning = function(msg){
-        log(LogDomain.Log_Level.WARNING, msg);
+        log(LogDomain.Log_Level.WARNING, "WARNING", msg);
     };
 
+    this.event = function(event, msg){
+        log(LogDomain.Log_Level.EVENT, event, msg);
+    };
 };
 
 
