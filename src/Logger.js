@@ -101,11 +101,9 @@ function Logger(domain, context){
 
         var domainTxt = domain.getName();
         parent = domain.getParent();
-        if(parent){
-            domainTxt = parent.getName();
-            while(parent = parent.getParent()){
-                domainTxt = parent.getName() + ":" + domainTxt;
-            }
+        while(parent){
+            domainTxt = parent.getName() + ":" + domainTxt;
+            parent = parent.getParent();
         }
         context.writer.write(domainTxt, event, msg);
     };

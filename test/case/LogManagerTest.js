@@ -38,6 +38,15 @@ describe("LogManager", function(){
             assert.equal(child.getParent().getDomainName(), "test");
         });
 
+        it("with root domain name", function(){
+            var manager = new LogManager("root");
+            var logger = manager.getLogger("test");
+            var writer = new TestWriter();
+            manager.setWriter(writer);
+            logger.debug("test");
+            assert.equal(writer.lastDomain, "root:test");
+        });
+
     });
     describe("#setWriter()", function(){
         it("new writer", function(){
